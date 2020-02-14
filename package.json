@@ -1,0 +1,20 @@
+{
+  "name": "click-exercise",
+  "version": "1.0.0",
+  "description": "click exercise",
+  "main": "index.js",
+  "scripts": {
+    "base": "npm run solution",
+    "solution": "node index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "ES6",
+    "Javascript"
+  ],
+  "author": "Siddhartha",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
+}
