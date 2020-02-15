@@ -3,11 +3,17 @@
 const fs = require('fs');
 const { filePathName, outputPathName } = require('./constants');
 
+/* function to sort an array in ascending order of IP
+return boolean*/
+
 var sortIP = function (arg1, arg2) {
   const ip1 = Number(arg1.ip.split(".").map((ip) => (`000${ip}`).slice(-3)).join(""));
   const ip2 = Number(arg2.ip.split(".").map((ip) => (`000${ip}`).slice(-3)).join(""));
   return ip1 - ip2;
 }
+
+/* function to sort an array in ascending order of Timestamp
+returns boolean*/
 
 var sortTimeStamp = function (arg1, arg2) {
   let date1, date2;
@@ -15,6 +21,9 @@ var sortTimeStamp = function (arg1, arg2) {
   date2 = new Date(arg2.timestamp)
   return (date1.getTime() - date2.getTime())
 }
+
+/* function to sort an sorted array by IP in ascending order of Timestamp
+returns boolean*/
 
 Array.prototype.sortTime = function () {
   var tempArr = [];
@@ -31,6 +40,9 @@ Array.prototype.sortTime = function () {
   tempArr.push(lastVal)
   return tempArr;
 }
+
+/* function to get most expensive clicks within each hour period excludind clicks for IP whoose occurence is more than 10 times in the over all array 
+returns an array of objects containing clicks grouped by IP addresses with most expensive clicks in each hour corresponding to that IP */
 
 var getHashedArr = function (arr) {
   arr = arr.filter((subSet) => {
@@ -69,6 +81,7 @@ var getHashedArr = function (arr) {
   return arr;
 }
 
+
 const results = function results(file, output) {
   return new Promise((resolve, reject) => {
     fs.readFile(file, 'utf8', function (err, data) {
@@ -85,15 +98,4 @@ const results = function results(file, output) {
 results(filePathName, outputPathName).then(() => console.log("Please Find Result in resultset.json file"));
 
 module.exports = results;
-
-// fs.readFile("clicks.json", function (err, data) {
-//   if (err) throw err;
-//   var input = JSON.parse(data);
-//   var sortedArr = (input.sort(sortIP)).sortTime();
-//   var newData = JSON.stringify(getHashedArr(sortedArr));
-
-//   fs.writeFileSync("resultset.json", newData);
-//   console.log("Please Find Result in resultset.json file");
-
-// });
 

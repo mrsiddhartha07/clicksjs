@@ -8,7 +8,14 @@ describe('My first test suite', () => {
     expect(Object.keys(data[0])[0]).toBe("11.11.11.11");
   });
 
-  // it('substracts two numbers', () => {
-  //   expect(substract(2, 2)).toBe(0)
-  // })
+  it('Test for more than 10 occurences of an IP', async () => {
+    const data = JSON.parse(await results(input, output));
+    let newData = Object.values(data).filter((element)=>{
+                    if(element["22.22.22.22"])
+                    {
+                        return true;
+                    }
+                  });
+    expect(newData.length).toEqual(0);
+  });
 })
