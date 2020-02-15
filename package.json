@@ -6,7 +6,7 @@
   "scripts": {
     "base": "npm run solution",
     "solution": "node index.js",
-    "test": "jest"
+    "test": "jest _test_/index.test.js"
   },
   "keywords": [
     "ES6",
